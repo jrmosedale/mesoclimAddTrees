@@ -110,7 +110,7 @@ get_ukcp_dtm<-function(aoi, ukcpdtm_file){
 #' \dontrun{
 #' dtmm<-get_dtmm(aoi,dtmc,dtmuk,basepath=ceda_basepath)
 #' }
-get_dtmm<-function(dtmf,dtmc,dtmuk){
+get_dtmm<-function(dtmf,dtmc,dtmuk,coast_v){
   dtmm_res<-round(exp( ( log(terra::res(dtmc)[1]) + log(terra::res(dtmf)[1]) ) / 2 ))
   dtmm_f<-terra::mask(terra::crop(terra::crop(dtmuk,dtmc),dtmuk),coast_v)
   dtmm<-terra::mask(terra::aggregate(dtmm_f,dtmm_res / res(dtmf),  na.rm=TRUE),coast_v, touches=FALSE)
